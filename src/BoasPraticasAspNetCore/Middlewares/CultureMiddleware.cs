@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
 
 namespace BoasPraticasAspNetCore.Middlewares
 {
@@ -15,7 +16,7 @@ namespace BoasPraticasAspNetCore.Middlewares
 
         public Task Invoke(HttpContext context)
         {
-            var requestCultureFeature = context.Request.Path.ToString().Split('/')[1];
+            var requestCultureFeature = context.Request.GetDisplayUrl().Split('/')[3];
 
             if (!string.IsNullOrWhiteSpace(requestCultureFeature))
             {
